@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+p {
+    @apply text-black/70 tracking-wide
+  }
+  
+  h2, h3 {
+    @apply text-black/70 tracking-wide font-semibold text-xl
+  }
+  
+  h1 {
+    @apply text-black/70 text-2xl font-bold tracking-wide leading-none
+  }
