@@ -14,10 +14,9 @@ export default function CurrentUser() {
   if (isSignedIn) {
     return (
       <div>
-        <p className="text-base tracking-wide font-semibold text-black/50">
-          Hello,
-        </p>
-        <h2>{user.username}.</h2>
+      
+        <h2 className="text-white/90 text-2xl"><span className="text-white/80">Hello,</span> {user.username}.</h2>
+        
       </div>
     );
   }

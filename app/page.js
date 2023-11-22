@@ -1,7 +1,19 @@
+'use client'
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Home() {
-  return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
-  );
+  const { user, loading } = useUser();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && user) {
+      router.push("/dashboard");
+    }
+  }, [user, loading]);
+
+  // Add timeout delay, logo and spinner
+  return <div>Loading...</div>;
 }
