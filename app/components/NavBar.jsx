@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Redirect } from "next";
 
 // Icons
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
