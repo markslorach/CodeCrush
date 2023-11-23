@@ -5,7 +5,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 // Components
-import StatCard from "../dashboard/UserStatCard";
+import StatCard from "./UserStatCard";
 
 export default function GetUserStats() {
   const { isSignedIn, user, isLoaded } = useUser();

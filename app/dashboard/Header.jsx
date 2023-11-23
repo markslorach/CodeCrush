@@ -1,6 +1,6 @@
 "use client";
 import { UserButton } from "@clerk/nextjs";
-import GetUser from "../components/GetUser";
+import GetUser from "../(user)/GetUser";
 
 // Components
 

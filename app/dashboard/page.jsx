@@ -1,6 +1,6 @@
 // Components
 import Header from './Header'
-import UserStats from '../components/GetUserStats'
+import UserStats from '../(user)/GetUserStats'
 
 export default async function Dashboard() {
   
