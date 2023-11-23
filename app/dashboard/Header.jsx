@@ -2,8 +2,6 @@
 import { UserButton } from "@clerk/nextjs";
 import GetUser from "../(user)/GetUser";
 
-// Components
-
 export default function Header() {
   return (
     <>

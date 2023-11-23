@@ -44,7 +44,7 @@ export default function GetUserStats() {
       }
     };
     getAllPlayers();
-  }, [user]); // Run the effect only when the user changes
+  }, [user]); 
 
   if (!isLoaded) {
     return <p>Loading...</p>;
