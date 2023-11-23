@@ -4,22 +4,14 @@ import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
-// Define a custom card component that takes a title and a value as props
-function Card({ title, value }) {
-  return (
-    <div className="bg-white/10 p-4 rounded-lg shadow-lg">
-      <h3 className="text-black/80 text-xl">{title}</h3>
-      <p className="text-black/90 text-2xl font-bold">{value}</p>
-    </div>
-  );
-}
+// Components
+import StatCard from "../dashboard/UserStatCard";
 
-export default function UserStats() {
+export default function GetUserStats() {
   const { isSignedIn, user, isLoaded } = useUser();
   const [player, setPlayer] = useState(null);
   const [players, setPlayers] = useState(null);
 
-  // Use the same useEffect hooks as the CurrentUser component to fetch the player and players data
   useEffect(() => {
     const getPlayer = async () => {
       if (user) {
@@ -65,13 +57,10 @@ export default function UserStats() {
     let playerPlace = `${playerIndex + 1}`;
 
     return (
-      <div className="flex flex-col items-center gap-4">
-        <h2 className="text-black/90 text-2xl">Your Stats</h2>
-        <div className="flex flex-row items-center gap-4">
-          <Card title="Score" value={player?.score ?? 0} />
-          <Card title="Streak" value={player?.streak ?? 0} />
-          <Card title="Place" value={playerPlace} />
-        </div>
+      <div className="flex justify-between">
+        <StatCard title={`Score`} value={player?.score ?? 0} />
+        <StatCard title={`Streak`} value={player?.streak ?? 0} />
+        <StatCard title={`Leaderboard`} value={playerPlace} />
       </div>
     );
   }

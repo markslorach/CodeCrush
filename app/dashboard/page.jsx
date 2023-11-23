@@ -1,12 +1,13 @@
-import React from 'react'
+// Components
 import Header from './Header'
-import UserStats from '../components/UserStats'
+import UserStats from '../components/GetUserStats'
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  
   return (
     <main>
-      <Header/>
-      <UserStats/>
+      <Header />
+      <UserStats />
     </main>
   )
 }
