@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html className="overflow-y-scroll" lang="en">
-        <body className={`${ubuntu.className} max-w-lg mx-auto bg-[#f0f4fe]`}>
+        <body className={`${ubuntu.className} max-w-md mx-auto bg-[#f0f4fe]`}>
           <main className="min-h-screen pb-24">
             {children}
             <NavBar />
