@@ -18,15 +18,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html className="overflow-y-scroll" lang="en">
+    <html className="overflow-y-scroll" lang="en">
         <body className={`${ubuntu.className} max-w-md mx-auto bg-[#f0f4fe]`}>
           <main className="min-h-screen pb-24">
+    <ClerkProvider>
             {children}
             <NavBar />
+    </ClerkProvider>
           </main>
         </body>
       </html>
-    </ClerkProvider>
   );
 }

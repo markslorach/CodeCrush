@@ -1,4 +1,3 @@
-// Import the same dependencies as the CurrentUser component
 "use client";
 import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
@@ -15,7 +14,7 @@ export default function GetUserStats() {
   useEffect(() => {
     const getPlayer = async () => {
       if (user) {
-        // Check if user already exists in the database
+        // Check if player already exists in the database
         let { data: player, error } = await supabase
           .from("players")
           .select()
@@ -30,6 +29,7 @@ export default function GetUserStats() {
     };
     getPlayer();
 
+    // Get all players in the data base and order them by score
     const getAllPlayers = async () => {
       let { data, error } = await supabase
         .from("players")
@@ -44,14 +44,14 @@ export default function GetUserStats() {
       }
     };
     getAllPlayers();
-  }, [user]); 
+  }, [user]);
 
   if (!isLoaded) {
-    return <p>Loading...</p>;
+    return null;
   }
 
   if (isSignedIn) {
-    // Get the index of the current player from the players array
+    // Get the index of the current player in the players array
     const playerIndex = players?.findIndex((p) => p.user_id === user.id) ?? -1;
     // Get the place of the current player in the leaderboard
     let playerPlace = `${playerIndex + 1}`;

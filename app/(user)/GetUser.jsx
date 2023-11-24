@@ -8,7 +8,7 @@ export default function GetUser() {
 
   useEffect(() => {
     const addPlayer = async () => {
-      // Check if user already exists in the database.
+      // Check if player already exists in the database.
       if (user) {
         let { data: player, error } = await supabase
           .from("players")
@@ -20,7 +20,7 @@ export default function GetUser() {
           console.log(error);
         }
 
-        // If user doesn't exist, insert them into the database.
+        // If player doesn't exist, insert them into the database.
         if (!player) {
           const { error } = await supabase
             .from("players")
@@ -43,7 +43,6 @@ export default function GetUser() {
     addPlayer();
   }, [user]);
 
-  // COME BACK TO THIS
   if (!isLoaded) {
     return <p>Loading...</p>;
   }
