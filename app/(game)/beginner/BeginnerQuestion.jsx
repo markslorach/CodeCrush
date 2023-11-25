@@ -20,7 +20,7 @@ export default function BeginnerQuestion({ questions, answers }) {
       ))}
 
       <button className="py-3 px-4 rounded-lg text-white/90 bg-purple-500">
-        {Submit}
+        Submit
       </button>
     </>
   );
