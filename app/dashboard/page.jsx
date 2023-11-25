@@ -7,7 +7,9 @@ export default async function Dashboard() {
   return (
     <main>
       <Header />
+      {/* Daily coding fact */}
       <UserStats />
+      {/* Challenge cards */}
     </main>
   )
 }

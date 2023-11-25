@@ -41,7 +41,7 @@ export default function GetUser() {
       }
     };
     addPlayer();
-  }, [user]);
+  }, []);
 
   if (!isLoaded) {
     return <p>Loading...</p>;
