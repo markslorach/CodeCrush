@@ -30,6 +30,7 @@ export default function GetUser() {
                 user_id: user.id,
                 score: 0,
                 streak: 0,
+                answered: [],
               },
             ])
             .select();
