@@ -1,6 +1,6 @@
-import { getQuestions } from "../supabaseFetch";
-import { getAnswers } from "../supabaseFetch";
-import { getPlayer } from "../supabaseFetch";
+import { getQuestions } from "../../db/supabaseFetch";
+import { getAnswers } from "../../db/supabaseFetch";
+import { getPlayer } from "../../db/supabaseFetch";
 
 // Components
 import BeginnerQuestion from "./BeginnerQuestion";
