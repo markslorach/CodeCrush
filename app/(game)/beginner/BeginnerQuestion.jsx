@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import supabase from "@/app/config/supabaseClient";
 
 export default function BeginnerQuestion({ questions, answers, player, day }) {
+  const [score, setScore] = useState(player.score);
   const [answerValue, setAnswerValue] = useState(false);
   const [answered, setAnswered] = useState(false);
-  const [correct, setCorrect] = useState("");
-  const [score, setScore] = useState(player.score);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
 
   // Filter question by difficulty level
   const beginnerQuestion = questions.filter((q) => q.difficulty_level === 1);
@@ -19,11 +20,14 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
     } else {
       setAnswered(false);
     }
-    console.log(answered);
   }, [player.answered, day]);
 
   // Add value of answer true/false into state
-  const handleAnswerClick = (e) => {
+  const handleAnswerClick = (e, index) => {
+    if (answered || submitted) {
+      return;
+    }
+    setSelectedAnswerIndex(index);
     setAnswerValue(e.currentTarget.value);
   };
 
@@ -42,14 +46,12 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
   // Check if answer is correct or incorrect
   const checkAnswer = () => {
-    answerValue === "true" ? setCorrect("Correct!") : setCorrect("Incorrect!");
+    setIsAnswerCorrect(answerValue === "true");
   };
 
   // Update player in supabase if answer is correct or incorrect.
   const UpdatePlayerDatabase = () => {
     if (answerValue === "true") {
-      // Remove console.log when finished testing.
-      console.log("correct");
       const updatePlayerIfCorrect = async () => {
         setScore(player.score + 10);
         const { data, error } = await supabase
@@ -69,8 +71,6 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       };
       updatePlayerIfCorrect();
     } else {
-      // Remove console.log when finished testing.
-      console.log("incorrect");
       const updatePlayerIfIncorrect = async () => {
         const { data, error } = await supabase
           .from("players")
@@ -90,14 +90,13 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
   // Handle player answer submit
   const handleSubmit = () => {
-    if (player.answered.includes(day)) {
-      setAnswered(true);
-    } else {
-      logPlayerAttempt();
-      UpdatePlayerDatabase();
-      checkAnswer();
-      setSubmitted(true);
+    if (answered) {
+      return;
     }
+    logPlayerAttempt();
+    checkAnswer();
+    UpdatePlayerDatabase();
+    setSubmitted(true);
   };
 
   return (
@@ -121,13 +120,23 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
       {/* ANSWERS */}
       <div className="flex flex-col gap-3">
-        {answers.map((answer) => (
+        {answers.map((answer, index) => (
           <div key={answer.id}>
             <button
               value={answer.correct}
-              onClick={(e) => handleAnswerClick(e)}
+              onClick={(e) => handleAnswerClick(e, index)}
               disabled={answered || submitted}
-              className="py-3 px-4 w-full rounded-lg text-left bg-slate-300 text-black/90"
+              className={`py-3 px-4 w-full rounded-lg text-left focus:bg-slate-400 ${
+                submitted
+                  ? index === selectedAnswerIndex
+                    ? isAnswerCorrect
+                      ? "bg-green-500 text-white" // Correctly selected answer turns green
+                      : "bg-red-500 text-white" // Wrong selected answer turns red
+                    : answer.correct
+                    ? "bg-green-500 text-white" // Correct answer turns green
+                    : "bg-slate-300 text-black/90" // Other answers stay the same
+                  : "bg-slate-300 text-black/90" // Background for unselected answers
+              }`}
             >
               {answer.answer_text}
             </button>
@@ -139,11 +148,10 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       <button
         onClick={handleSubmit}
         className="py-3 px-4 rounded-lg text-white/90 bg-purple-500"
-        disabled={answered}
+        disabled={answered || submitted}
       >
         {answered ? "Already Answered" : "Submit"}
       </button>
-      <p>{correct}</p>
     </>
   );
 }
