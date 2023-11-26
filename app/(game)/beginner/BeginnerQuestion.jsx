@@ -7,6 +7,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
   const [answerValue, setAnswerValue] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [correct, setCorrect] = useState("");
+  const [score, setScore] = useState(player.score);
 
   // Filter question by difficulty level
   const beginnerQuestion = questions.filter((q) => q.difficulty_level === 1);
@@ -38,7 +39,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
     }
   };
 
-    // Check if answer is correct or incorrect
+  // Check if answer is correct or incorrect
   const checkAnswer = () => {
     answerValue === "true" ? setCorrect("Correct!") : setCorrect("Incorrect!");
   };
@@ -49,6 +50,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       // Remove console.log when finished testing.
       console.log("correct");
       const updatePlayerIfCorrect = async () => {
+        setScore(player.score + 10);
         const { data, error } = await supabase
           .from("players")
           .update({
@@ -99,6 +101,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
   return (
     <>
+      <p>{score}</p>
       <Image
         src={`/images/${day}.png`}
         alt="Codebox"
