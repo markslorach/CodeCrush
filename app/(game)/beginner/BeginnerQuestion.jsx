@@ -120,20 +120,18 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       <div className="flex flex-col gap-3">
         {answers.map((answer) => (
           <div key={answer.id}>
-          <button
-        value={answer.correct}
-        onClick={(e) => handleAnswerClick(e)}
-        disabled={answered || submitted}
-        style={{
-          padding: '1rem',
-          borderRadius: '0.375rem',
-          width: '100%',
-          textAlign: 'left',
-          backgroundColor: submitted && answer.correct === true ? '#68D391' : '#CBD5E0',
-        }}
-      >
-        {answer.answer_text}
-      </button>
+            <button
+              value={answer.correct}
+              onClick={(e) => handleAnswerClick(e)}
+              disabled={answered || submitted} 
+                className={`py-3 px-4 w-full rounded-lg text-left text-black/90 ${
+                    submitted && answer.correct
+                    ? "bg-green-400"
+                    : "bg-slate-200 focus:bg-slate-300"
+                }`}
+            >
+              {answer.answer_text}
+            </button>
           </div>
         ))}
       </div>
