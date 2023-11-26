@@ -1,9 +1,10 @@
 "use client";
 
-export default function BeginnerQuestion({ questions, answers }) {
+export default function BeginnerQuestion({ questions, answers, player }) {
   // Filter question by difficulty level
   const beginnerQuestion = questions.filter((q) => q.difficulty_level === 1);
-  console.log(beginnerQuestion);
+  //   console.log(beginnerQuestion);
+  //   console.log(player);
 
   return (
     <>
