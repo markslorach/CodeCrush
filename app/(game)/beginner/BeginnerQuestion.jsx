@@ -4,7 +4,7 @@ import supabase from "@/app/config/supabaseClient";
 
 export default function BeginnerQuestion({ questions, answers, player, day }) {
   const [answerValue, setAnswerValue] = useState(false);
-  const [answered, setAnswered] = useState(null);
+  const [answered, setAnswered] = useState(false);
   const [correct, setCorrect] = useState("");
   const [score, setScore] = useState(player.score);
   const [submitted, setSubmitted] = useState(false);
@@ -26,8 +26,6 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
   const handleAnswerClick = (e) => {
     setAnswerValue(e.currentTarget.value);
   };
-
-  console.log(answerValue);
 
   // Log player attempt in supabase and state
   const logPlayerAttempt = async () => {
@@ -102,39 +100,42 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
     }
   };
 
-  console.log(answered);
-
   return (
     <>
+      {/* SCORE */}
       <p>{score}</p>
+
+      {/* CODE BOX */}
       <img
         src={`/images/${day}.png`}
         alt="Codebox"
         className="w-full rounded-md"
       />
+
+      {/* QUESTION */}
       {beginnerQuestion.map((question) => (
         <div key={question.id}>
           <h3>{question.question_text}</h3>
         </div>
       ))}
+
+      {/* ANSWERS */}
       <div className="flex flex-col gap-3">
         {answers.map((answer) => (
           <div key={answer.id}>
             <button
               value={answer.correct}
               onClick={(e) => handleAnswerClick(e)}
-              disabled={answered || submitted} 
-                className={`py-3 px-4 w-full rounded-lg text-left text-black/90 ${
-                    submitted && answer.correct
-                    ? "bg-green-400"
-                    : "bg-slate-200 focus:bg-slate-300"
-                }`}
+              disabled={answered || submitted}
+              className="py-3 px-4 w-full rounded-lg text-left bg-slate-300 text-black/90"
             >
               {answer.answer_text}
             </button>
           </div>
         ))}
       </div>
+
+      {/* SUBMIT BUTTON */}
       <button
         onClick={handleSubmit}
         className="py-3 px-4 rounded-lg text-white/90 bg-purple-500"
