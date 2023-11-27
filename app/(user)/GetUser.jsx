@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
 
 export default function GetUser() {
-  const { isSignedIn, user, isLoaded } = useUser();
+  const { isSignedIn, user } = useUser();
 
   useEffect(() => {
     const addPlayer = async () => {
@@ -30,7 +30,7 @@ export default function GetUser() {
                 user_id: user.id,
                 score: 0,
                 streak: 0,
-                answered: [],
+                answered: 0,
               },
             ])
             .select();
@@ -44,15 +44,7 @@ export default function GetUser() {
     addPlayer();
   }, []);
 
-  if (!isLoaded) {
-    return <p>Loading...</p>;
-  }
-
   if (isSignedIn) {
-    return (
-      <div>
-        <h1>{`Hello, ${user.firstName}.`}</h1>
-      </div>
-    );
+    return <h1>{`Hello, ${user.firstName}.`}</h1>;
   }
 }

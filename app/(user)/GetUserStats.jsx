@@ -1,7 +1,7 @@
 "use client";
-import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
+import supabase from "../config/supabaseClient";
 
 // Icons
 import { FaStar } from "react-icons/fa6";
@@ -74,7 +74,7 @@ export default function GetUserStats() {
             value={player?.streak ?? 0}
             icon={<BsFillLightningChargeFill />}
           />
-          <StatCard title={`Rank`} value={playerPlace} icon={<FaTrophy />} />
+          <StatCard title={`Rank`} value={playerPlace ?? 0} icon={<FaTrophy />} />
         </div>
       </div>
     );

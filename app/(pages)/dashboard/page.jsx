@@ -1,15 +1,18 @@
 import Link from "next/link";
 
 // Components
-import Header from "./Header";
+import Header from "./components/Header";
 import GetUserStats from "../../(user)/GetUserStats";
 
-export default async function Dashboard() {
+export default function Dashboard() {
   return (
     <main>
       <Header />
+
       {/* Daily coding fact */}
-      <GetUserStats/>
+
+      <GetUserStats />
+
       {/* Challenge cards */}
       <Link href={`/beginner`}>
         <button className="py-3 px-4 rounded-lg text-white/90 bg-purple-500">

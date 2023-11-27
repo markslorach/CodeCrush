@@ -16,11 +16,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
   // Check if player has already answered question
   useEffect(() => {
-    if (player.answered === day) {
-      setAnswered(true);
-    } else {
-      setAnswered(false);
-    }
+    player.answered === day ? setAnswered(true) : setAnswered(false);
   }, [player.answered, day]);
 
   // Add value of answer true/false into state
