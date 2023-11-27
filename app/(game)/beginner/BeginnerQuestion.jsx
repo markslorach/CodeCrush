@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import supabase from "@/app/config/supabaseClient";
+import Image from "next/image";
 
 export default function BeginnerQuestion({ questions, answers, player, day }) {
   const [score, setScore] = useState(player.score);
@@ -15,7 +16,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
 
   // Check if player has already answered question
   useEffect(() => {
-    if (player.answered.includes(day)) {
+    if (player.answered === day) {
       setAnswered(true);
     } else {
       setAnswered(false);
@@ -35,7 +36,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
   const logPlayerAttempt = async () => {
     const { error } = await supabase
       .from("players")
-      .update({ answered: [beginnerQuestion[0].day_id] })
+      .update({ answered: beginnerQuestion[0].day_id })
       .eq("user_id", player.user_id);
 
     if (error) {
@@ -105,10 +106,16 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       <p>{score}</p>
 
       {/* CODE BOX */}
-      <img
+      <Image
         src={`/images/${day}.png`}
-        alt="Codebox"
-        className="w-full rounded-md"
+        alt="Code"
+        width={0}
+        height={0}
+        layout="responsive"
+        onError={(e) => {
+          e.target.style.display = "none";
+        }}
+        className="rounded-xl"
       />
 
       {/* QUESTION */}
@@ -126,16 +133,16 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
               value={answer.correct}
               onClick={(e) => handleAnswerClick(e, index)}
               disabled={answered || submitted}
-              className={`py-3 px-4 w-full rounded-lg text-left focus:bg-slate-400 ${
+              className={`py-3 px-4 w-full rounded-lg text-left ${
                 submitted
                   ? index === selectedAnswerIndex
                     ? isAnswerCorrect
-                      ? "bg-green-500 text-white" // Correctly selected answer turns green
-                      : "bg-red-500 text-white" // Wrong selected answer turns red
+                      ? "bg-green-400 text-white" // Correctly selected answer turns green
+                      : "bg-red-400 text-white" // Wrong selected answer turns red
                     : answer.correct
-                    ? "bg-green-500 text-white" // Correct answer turns green
+                    ? "bg-green-400 text-white" // Correct answer turns green
                     : "bg-slate-300 text-black/90" // Other answers stay the same
-                  : "bg-slate-300 text-black/90" // Background for unselected answers
+                  : "bg-slate-300 focus:bg-slate-400 text-black/90" // Background for unselected answers
               }`}
             >
               {answer.answer_text}

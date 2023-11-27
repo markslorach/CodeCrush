@@ -3,6 +3,11 @@ import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
+// Icons
+import { FaStar } from "react-icons/fa6";
+import { FaTrophy } from "react-icons/fa";
+import { BsFillLightningChargeFill } from "react-icons/bs";
+
 // Components
 import StatCard from "./UserStatCard";
 
@@ -57,10 +62,20 @@ export default function GetUserStats() {
     let playerPlace = `${playerIndex + 1}`;
 
     return (
-      <div className="flex justify-between">
-        <StatCard title={`Score`} value={player?.score ?? 0} />
-        <StatCard title={`Streak`} value={player?.streak ?? 0} />
-        <StatCard title={`Leaderboard`} value={playerPlace} />
+      <div className="my-10">
+        <div className="flex justify-around gap-5">
+          <StatCard
+            title={`Score`}
+            value={player?.score ?? 0}
+            icon={<FaStar />}
+          />
+          <StatCard
+            title={`Streak`}
+            value={player?.streak ?? 0}
+            icon={<BsFillLightningChargeFill />}
+          />
+          <StatCard title={`Rank`} value={playerPlace} icon={<FaTrophy />} />
+        </div>
       </div>
     );
   }
