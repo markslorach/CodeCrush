@@ -102,17 +102,20 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
       <p>{score}</p>
 
       {/* CODE BOX */}
+      <figure>
       <Image
-        src={`/images/${day}.png`}
+        src={`https://hiyjfziavcrmlnohdriv.supabase.co/storage/v1/object/public/question-images/${day}.png`}
+        width={900}
+        height={436}
         alt="Code"
-        width={0}
-        height={0}
-        layout="responsive"
+        loading="lazy"	
+        className="rounded-xl"
+        // style={{ width: "100%", height: "auto" }}
         onError={(e) => {
           e.target.style.display = "none";
         }}
-        className="rounded-xl"
       />
+      </figure>
 
       {/* QUESTION */}
       {beginnerQuestion.map((question) => (
@@ -129,7 +132,7 @@ export default function BeginnerQuestion({ questions, answers, player, day }) {
               value={answer.correct}
               onClick={(e) => handleAnswerClick(e, index)}
               disabled={answered || submitted}
-              className={`py-3 px-4 w-full rounded-lg text-left ${
+              className={`py-3 px-4 w-full rounded-lg text-left active:bg-slate-400 ${
                 submitted
                   ? index === selectedAnswerIndex
                     ? isAnswerCorrect
