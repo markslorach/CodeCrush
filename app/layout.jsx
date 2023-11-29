@@ -3,7 +3,6 @@ import "./globals.css";
 
 // Auth Provider
 import { ClerkProvider } from "@clerk/nextjs";
-// Components
 import NavBar from "./components/NavBar";
 
 const ubuntu = Ubuntu({
@@ -18,15 +17,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html className="overflow-y-scroll" lang="en">
-      <body className={`${ubuntu.className} max-w-md mx-auto bg-[#f0f4fe]`}>
-        <main className="min-h-screen pb-24 pt-10 mx-5">
-          <ClerkProvider>
-            {children}
-            <NavBar />
-          </ClerkProvider>
-        </main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className="dark:bg-[#041d3e]">
+        <body className={`${ubuntu.className} max-w-md mx-auto`}>
+          <main className="mx-5 sm:mx-10 pb-28">
+          {children}
+          <NavBar/>
+          </main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

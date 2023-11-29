@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Redirect } from "next";
 
 // Icons
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
@@ -8,26 +7,26 @@ import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 export default function NavBar() {
   return (
-    <nav className="flex z-10 fixed bottom-0 left-0 h-20 items-center rounded-t-2xl w-full shadow-2xl bg-white/40">
-      <div className="w-full flex">
-      <div className="w-full max-w-lg mx-auto">
-        <ul className="flex justify-around text-black/70">
-          <li>
-            <Link href="/dashboard">
-              <SpaceDashboardIcon fontSize="medium" />
-            </Link>
-          </li>
-          <li>
-            <Link href="/profile">
-              <AccountBoxIcon fontSize="medium" />
-            </Link>
-          </li>
-          <li>
-            <Link href="/leaderboard">
-              <LeaderboardIcon fontSize="medium" />
-            </Link>
-          </li>
-        </ul>
+    <nav className="h-20 fixed z-30 bottom-0 left-0 w-full bg-[#041d3e]">
+      <div className="max-w-md mx-auto h-full flex  px-5 sm:px-10">
+        <div className="bg-[#1c375c] w-full h-min py-4 px-6 rounded-xl shadow-md">
+          <ul className="flex w-full justify-between">
+            <li>
+              <Link href="/dashboard">
+                <SpaceDashboardIcon fontSize="medium" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/profile">
+                <AccountBoxIcon fontSize="medium" />
+              </Link>
+            </li>
+            <li>
+              <Link href="/leaderboard">
+                <LeaderboardIcon fontSize="medium" />
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

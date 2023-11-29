@@ -9,12 +9,12 @@ import { FaTrophy } from "react-icons/fa";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 
 // Components
-import StatCard from "./UserStatCard";
+import StatCard from "./StatCard";
 
-export default function GetUserStats() {
-  const { isSignedIn, user, isLoaded } = useUser();
-  const [player, setPlayer] = useState(null);
-  const [players, setPlayers] = useState(null);
+export default function StatsContainer() {
+  const { user } = useUser();
+  const [player, setPlayer] = useState([]);
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     const getPlayer = async () => {
@@ -32,7 +32,6 @@ export default function GetUserStats() {
         setPlayer(player);
       }
     };
-    getPlayer();
 
     // Get all players in the data base and order them by score
     const getAllPlayers = async () => {
@@ -41,42 +40,46 @@ export default function GetUserStats() {
         .select()
         .order("score", { ascending: false })
         .select();
+
       if (error) {
         console.log(error);
       }
+
       if (data) {
         setPlayers(data);
       }
     };
+    getPlayer();
     getAllPlayers();
   }, [user]);
 
-  if (!isLoaded) {
-    return null;
-  }
-
-  if (isSignedIn) {
+  if (user && player && players) {
     // Get the index of the current player in the players array
-    const playerIndex = players?.findIndex((p) => p.user_id === user.id) ?? -1;
+    const playerIndex = players.findIndex((p) => p.user_id === user.id) ?? -1;
     // Get the place of the current player in the leaderboard
     let playerPlace = `${playerIndex + 1}`;
 
     return (
-      <div className="my-10">
+      <section className="my-10">
+        <h2 className="mb-5">Stats</h2>
         <div className="flex justify-around gap-5">
           <StatCard
             title={`Score`}
-            value={player?.score ?? 0}
+            value={player.score ?? 0}
             icon={<FaStar />}
           />
           <StatCard
             title={`Streak`}
-            value={player?.streak ?? 0}
+            value={player.streak ?? 0}
             icon={<BsFillLightningChargeFill />}
           />
-          <StatCard title={`Rank`} value={playerPlace ?? 0} icon={<FaTrophy />} />
+          <StatCard
+            title={`Rank`}
+            value={playerPlace ?? 0}
+            icon={<FaTrophy />}
+          />
         </div>
-      </div>
+      </section>
     );
   }
 }
