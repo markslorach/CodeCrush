@@ -16,3 +16,12 @@ h2,
 h3 {
   @apply text-white/80 tracking-wide;
 }
+
+ul,
+li {
+  @apply text-white/50;
+}
+
+.cl-avatarBox {
+  @apply bg-white/80 w-8 h-8;
+}

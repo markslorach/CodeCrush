@@ -5,8 +5,8 @@ import StatsContainer from "@/app/(user)/StatsContainer";
 export default function Dashboard() {
   return (
     <>
-      <Header/>
-      <StatsContainer/>
+      <Header />
+      <StatsContainer />
       <h2>Today's Challenge</h2>
     </>
   );
