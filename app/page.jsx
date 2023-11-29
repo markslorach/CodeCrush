@@ -1,5 +1,5 @@
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function Home() {
   return (
