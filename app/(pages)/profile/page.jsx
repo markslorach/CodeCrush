@@ -4,10 +4,10 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 export default function Profile() {
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isSignedIn } = useUser();
   const router = useRouter();
 
-  if ((!user && !isLoaded) || !isSignedIn) {
+  if (!isSignedIn) {
     router.push("/");
   }
 
