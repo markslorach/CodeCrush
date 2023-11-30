@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en" className="dark:bg-[#041d3e]">
         <body className={`${ubuntu.className} max-w-md mx-auto`}>
-          <main className="mx-5 sm:mx-10 pb-28">
+          <main className="mx-5 sm:mx-10 pb-36">
           {children}
           <NavBar/>
           </main>
