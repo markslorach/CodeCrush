@@ -2,7 +2,19 @@
 import { useState } from "react";
 
 // Components
-import ChellengeCard from "./ChellengeCard";
+import ChellengeCard from "./components/ChellengeCard";
+
+const pythonCard = {
+  title: "Python",
+  description: "Challenge yourself with today's Python questions!",
+  image: "/images/python_logo.png",
+};
+
+const jsCard = {
+  title: "JavaScript",
+  description: "Think you can take on today's JavaScript challenge?",
+  image: "/images/javascript_logo.png",
+};
 
 export default function ChallengeContainer() {
   const [difficulty, setDifficulty] = useState("Beginner");
@@ -26,7 +38,21 @@ export default function ChallengeContainer() {
           <option>Advanced</option>
         </select>
       </div>
-     <ChellengeCard difficulty={difficulty} />
+
+    <div className="flex gap-5">
+      <ChellengeCard
+        difficulty={difficulty}
+        title={pythonCard.title}
+        description={pythonCard.description}
+        image={pythonCard.image}
+      />
+      <ChellengeCard disabled
+        difficulty={difficulty}
+        title={jsCard.title}
+        description={jsCard.description}
+        image={jsCard.image}
+      />
+      </div>
     </>
   );
 }

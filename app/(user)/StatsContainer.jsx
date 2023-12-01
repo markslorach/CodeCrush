@@ -1,7 +1,7 @@
 "use client";
+import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-import supabase from "../config/supabaseClient";
 
 // Icons
 import { FaStar } from "react-icons/fa6";
