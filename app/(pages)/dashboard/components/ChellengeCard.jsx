@@ -6,9 +6,10 @@ export default function ChellengeCard({
   title,
   description,
   image,
+  link,
 }) {
   return (
-    <Link className="w-1/2 flex" href={`/${difficulty.toLowerCase()}`}>
+    <Link className="w-1/2 flex" href={`${link}/${difficulty.toLowerCase()}`}>
       <button className="flex flex-col items-center gap-3 p-4 rounded-lg bg-[#1c375c] shadow-md">
         <div className="avatar">
           <div className="w-14 rounded-full">

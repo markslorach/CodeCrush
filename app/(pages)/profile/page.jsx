@@ -4,10 +4,10 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 
 export default function Profile() {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const router = useRouter();
 
-  if (!isSignedIn) {
+  if (!isSignedIn && !user) {
     router.push("/");
   }
 
@@ -15,9 +15,6 @@ export default function Profile() {
     <div>
       Profile
       <SignOutButton />
-      <button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
-  Save changes
-</button>
     </div>
   );
 }
