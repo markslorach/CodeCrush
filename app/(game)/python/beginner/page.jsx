@@ -9,7 +9,7 @@ export default function Beginner() {
           <input
             type="radio"
             name="radio-10"
-            className="radio checked:bg-blue-500"
+            className="radio checked:bg-white/50"
             defaultChecked
           />
         </label>
@@ -20,7 +20,7 @@ export default function Beginner() {
           <input
             type="radio"
             name="radio-10"
-            className="radio checked:bg-blue-500"
+            className="radio checked:bg-white/50"
           />
         </label>
       </div>
@@ -30,7 +30,7 @@ export default function Beginner() {
           <input
             type="radio"
             name="radio-10"
-            className="radio checked:bg-blue-500"
+            className="radio checked:bg-white/50"
           />
         </label>
       </div>
