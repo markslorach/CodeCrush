@@ -1,39 +1,27 @@
-import React from "react";
+// Components
+import { getAnswers, getQuestions } from "@/app/db/supabaseFetch";
+import BeginnerQuestion from "./BeginnerQuestion";
 
-export default function Beginner() {
+export const revalidate = true;
+
+export default async function Beginner() {
+  // Get current day of the week
+  const date = new Date();
+  let day = date.getDay();
+  day = ((day + 6) % 7) + 1;
+
+  const questions = await getQuestions();
+  const answers = await getAnswers();
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="form-control bg-[#1c375c] rounded-lg py-1 px-2">
-        <label className="label cursor-pointer">
-          <span className="label-text">Blue pill</span>
-          <input
-            type="radio"
-            name="radio-10"
-            className="radio checked:bg-white/50"
-            defaultChecked
-          />
-        </label>
-      </div>
-      <div className="form-control bg-[#1c375c] rounded-lg py-1 px-2">
-        <label className="label cursor-pointer">
-          <span className="label-text">Blue pill</span>
-          <input
-            type="radio"
-            name="radio-10"
-            className="radio checked:bg-white/50"
-          />
-        </label>
-      </div>
-      <div className="form-control bg-[#1c375c] rounded-lg py-1 px-2">
-        <label className="label cursor-pointer">
-          <span className="label-text">Blue pill</span>
-          <input
-            type="radio"
-            name="radio-10"
-            className="radio checked:bg-white/50"
-          />
-        </label>
-      </div>
-    </div>
+    <>
+      <h2>Beginner Question</h2>
+
+      <BeginnerQuestion
+        questions={questions}
+        answers={answers}
+        day={day}
+      />
+    </>
   );
 }

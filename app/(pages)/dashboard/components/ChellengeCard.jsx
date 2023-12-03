@@ -13,7 +13,7 @@ export default function ChellengeCard({
       <button className="flex flex-col items-center gap-3 p-4 rounded-lg bg-[#1c375c] shadow-md">
         <div className="avatar">
           <div className="w-14 rounded-full">
-            <Image src={image} width={256} height={256} />
+            <Image src={image} width={256} height={256} alt="logo" />
           </div>
         </div>
         <h3>{title}</h3>
