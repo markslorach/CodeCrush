@@ -1,7 +1,20 @@
-import React from 'react'
+import { getAnswers, getQuestions } from "@/app/db/supabaseFetch";
 
-export default function Advanced() {
+// Containers
+
+export const revalidate = 0;
+
+export default async function Beginner() {
+  // Get current day of the week
+  const date = new Date();
+  let day = date.getDay();
+  day = ((day + 6) % 7) + 1;
+
+  // Fetch data
+  const questions = await getQuestions();
+  const answers = await getAnswers();
+
   return (
-    <div>Advanced</div>
-  )
+    <h1>Advanced</h1>
+  );
 }
