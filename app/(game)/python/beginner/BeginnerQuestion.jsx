@@ -6,6 +6,8 @@ import Image from "next/image";
 // Hooks
 import { usePlayer } from "@/app/hooks/usePlayer";
 
+export const revalidate = 0;
+
 export default function BeginnerQuestion({ questions, answers, day }) {
   const player = usePlayer();
 
@@ -21,7 +23,9 @@ export default function BeginnerQuestion({ questions, answers, day }) {
 
   // Trigger handleAnswerClick for the default checked answer (index 0)
   useEffect(() => {
-    handleAnswerClick({ currentTarget: { value: answers[0].correct } }, 0);
+    if (answers) {
+      handleAnswerClick({ currentTarget: { value: answers } }, 0);
+    }
   }, []);
 
   // Set player score on load/change
@@ -40,7 +44,7 @@ export default function BeginnerQuestion({ questions, answers, day }) {
     }
   }, [player, day]);
 
-  // Log player attempt in supabase and state
+  // Log player attempt in supabase
   const logPlayerAttempt = async () => {
     const { error } = await supabase
       .from("players")
@@ -144,14 +148,14 @@ export default function BeginnerQuestion({ questions, answers, day }) {
         {answers.map((answer, index) => (
           <div key={index} className="form-control ">
             <label
-              className={`label cursor-pointer rounded-lg py-3 px-3 ${
+              className={`label cursor-pointer shadow-md rounded-lg py-3 px-3 ${
                 submitted
                   ? index === selectedAnswerIndex
                     ? isAnswerCorrect
-                      ? "border-2 border-[#4F8FF8] bg-[#1c375c]" // Correctly selected answer turns green
+                      ? "border-2 border-[#4F8FF8] bg-[#1c375c]" // Correctly selected answer turns blue
                       : "border-2 border-red-400/90 bg-[#1c375c]" // Wrong selected answer turns red
                     : answer.correct
-                    ? "border-2 border-[#4F8FF8] bg-[#1c375c]" // Correct answer turns green
+                    ? "border-2 border-[#4F8FF8] bg-[#1c375c]" // Correct answer turns blue
                     : "bg-[#1c375c]" // Other answers stay the same
                   : "bg-[#1c375c] " // Background for unselected answers
               }`}
@@ -162,7 +166,7 @@ export default function BeginnerQuestion({ questions, answers, day }) {
                 name="radio-10"
                 value={answer.correct}
                 onClick={(e) => handleAnswerClick(e, index)}
-                className="radio checked:bg-white/50"
+                className="radio checked:bg-[#4F8FF8]"
                 defaultChecked={index === 0}
                 disabled={answered || submitted}
               />

@@ -2,7 +2,7 @@
 import { getAnswers, getQuestions } from "@/app/db/supabaseFetch";
 import BeginnerQuestion from "./BeginnerQuestion";
 
-export const revalidate = true;
+export const revalidate = 0;
 
 export default async function Beginner() {
   // Get current day of the week
