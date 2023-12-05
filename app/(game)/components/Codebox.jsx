@@ -1,8 +1,9 @@
 import Image from "next/image";
 
+export const revalidate = 0
+
 export default function Codebox({ day }) {
 
-  console.log(day);
   return (
     <figure>
       <Image
