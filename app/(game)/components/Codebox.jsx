@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 export default function Codebox({ day }) {
+
+  console.log(day);
   return (
     <figure>
       <Image

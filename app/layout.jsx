@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en" className="dark:bg-[#041d3e]">
+      <html lang="en" className="bg-[#041d3e]">
         <body className={`${ubuntu.className} max-w-md mx-auto`}>
           <main>{children}</main>
         </body>
