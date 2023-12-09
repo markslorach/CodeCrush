@@ -1,9 +1,10 @@
 "use client";
+"use client";
 import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
 
-export default function GetUser() {
+const GetUser = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
   useEffect(() => {
@@ -44,15 +45,21 @@ export default function GetUser() {
     addPlayer();
   }, []);
 
-  if (isLoaded && isSignedIn) {
-    return (
-      <h1>
-        <span className="text-white/50">Hello, </span>
-        {user.username
-          ? user.username.charAt(0).toUpperCase() + user.username.slice(1)
-          : user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
-        <span className="text-white/50">!</span>
-      </h1>
-    );
-  }
-}
+  return (
+    <div>
+      {!isLoaded && <h1>Loading...</h1>}
+
+      {isLoaded && isSignedIn && (
+        <h1>
+          <span className="text-white/50">Hello, </span>
+          {user.username
+            ? user.username.charAt(0).toUpperCase() + user.username.slice(1)
+            : user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}
+          <span className="text-white/50">!</span>
+        </h1>
+      )}
+    </div>
+  );
+};
+
+export default GetUser;

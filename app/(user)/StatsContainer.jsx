@@ -53,9 +53,9 @@ export default function StatsContainer() {
     getAllPlayers();
   }, [user]);
 
-  if (user && player && players) {
+  if (user || player || players) {
     // Get the index of the current player in the players array
-    const playerIndex = players.findIndex((p) => p.user_id === user.id) ?? -1;
+    const playerIndex = players.findIndex((p) => p.user_id === user?.id) ?? -1;
     // Get the place of the current player in the leaderboard
     let playerPlace = `${playerIndex + 1}`;
 
@@ -63,21 +63,37 @@ export default function StatsContainer() {
       <section className="mt-10 mb-20">
         <h2 className="mb-5">Stats</h2>
         <div className="flex justify-around gap-5">
-          <StatCard
-            title={`Score`}
-            value={player.score ?? 0}
-            icon={<FaStar />}
-          />
-          <StatCard
-            title={`Streak`}
-            value={player.streak ?? 0}
-            icon={<BsFillLightningChargeFill />}
-          />
-          <StatCard
-            title={`Rank`}
-            value={playerPlace ?? 0}
-            icon={<FaTrophy />}
-          />
+          {player && player.score ? (
+            <StatCard
+              title={`Score`}
+              value={player.score ?? 0}
+              icon={<FaStar />}
+            />
+          ) : (
+            <StatCard title={`Score`} value={0} icon={<FaStar />} />
+          )}
+          {player && player.streak ? (
+            <StatCard
+              title={`Streak`}
+              value={player.streak ?? 0}
+              icon={<BsFillLightningChargeFill />}
+            />
+          ) : (
+            <StatCard
+              title={`Streak`}
+              value={0}
+              icon={<BsFillLightningChargeFill />}
+            />
+          )}
+          {player && players ? (
+            <StatCard
+              title={`Rank`}
+              value={playerPlace ?? 0}
+              icon={<FaTrophy />}
+            />
+          ) : (
+            <StatCard title={`Rank`} value={0} icon={<FaTrophy />} />
+          )}
         </div>
       </section>
     );
