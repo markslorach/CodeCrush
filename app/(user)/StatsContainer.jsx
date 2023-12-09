@@ -60,7 +60,7 @@ export default function StatsContainer() {
     let playerPlace = `${playerIndex + 1}`;
 
     return (
-      <section className="mt-10 mb-20">
+      <section className="my-10">
         <h2 className="mb-5">Stats</h2>
         <div className="flex justify-around gap-5">
           {player && player.score ? (

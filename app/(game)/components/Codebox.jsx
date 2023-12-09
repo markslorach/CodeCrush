@@ -5,12 +5,12 @@ export const revalidate = 0
 export default function Codebox({ day }) {
 
   return (
-    <figure>
+    <figure className="rounded-xl shadow-md mb-10">
       <Image
         src={`https://hiyjfziavcrmlnohdriv.supabase.co/storage/v1/object/public/question-images/${day}.png`}
         width={900}
         height={436}
-        alt="Code box"
+        alt="Codebox"
         priority={true}
         className="rounded-xl"
         onError={(e) => {

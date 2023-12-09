@@ -124,10 +124,12 @@ export default function QuestionContainer({ questions, answers, day }) {
   };
 
   return (
-    <>
-      <h2>Beginner Question</h2>
+    <div>
+      <header className="flex justify-between items-center h-28">
+        <h2>Beginner Question</h2>
+        <Score score={score} />
+      </header>
 
-      <Score score={score} />
       <Codebox day={day} />
       <Question question={question} />
       <Answers
@@ -143,6 +145,6 @@ export default function QuestionContainer({ questions, answers, day }) {
         answered={answered}
         submitted={submitted}
       />
-    </>
+    </div>
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-"use client";
 import supabase from "../config/supabaseClient";
 import { useUser } from "@clerk/nextjs";
 import { useEffect } from "react";
