@@ -26,7 +26,7 @@ export default function ChallengeContainer() {
   };
 
   return (
-    <div className="py-10">
+    <div className="pt-10 pb-36">
       <div className="flex justify-between items-center mb-6">
         <h2>Today's Challenge</h2>
         <select

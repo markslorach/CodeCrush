@@ -15,16 +15,16 @@ export default function Answers({
       {answers.map((answer, index) => (
         <div key={index} className="form-control ">
           <label
-            className={`label cursor-pointer shadow-md rounded-lg py-3 px-3 border-b-4 border-white/80 ${
+            className={`label cursor-pointer shadow-md rounded-lg py-3 px-3 border-b-4 ${
               submitted
                 ? index === selectedAnswerIndex
                   ? isAnswerCorrect
-                    ? "border-b-2 border-[#4F8FF8] bg-[#1c375c]" // Correctly selected answer turns blue
-                    : "border-b-2 border-red-400/90 bg-[#1c375c]" // Wrong selected answer turns red
+                    ? "border-b-4 border-[#4F8FF8] bg-[#1c375c]" // Correctly selected answer turns blue
+                    : "border-b-4 border-red-400/90 bg-[#1c375c]" // Wrong selected answer turns red
                   : answer.correct
-                  ? "border-b-2 border-[#4F8FF8] bg-[#1c375c]" // Correct answer turns blue
+                  ? "border-b-4 border-[#4F8FF8] bg-[#1c375c]" // Correct answer turns blue
                   : "bg-[#1c375c]" // Other answers stay the same
-                : "bg-[#1c375c] " // Background for unselected answers
+                : "bg-[#1c375c] border-white/80" // Background for unselected answers
             }`}
           >
             <span className="label-text text-white/80">{answer.answer_text}</span>
