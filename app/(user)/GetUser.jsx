@@ -21,16 +21,17 @@ const GetUser = () => {
         }
 
         // If player doesn't exist, insert them into the database.
-        if (!player) {
+        if (!player && user) {
           const { error } = await supabase
             .from("players")
             .insert([
               {
                 name: user.firstName,
+                username: user.username,
                 user_id: user.id,
                 score: 0,
                 streak: 0,
-                answered: 0,
+                beginner_answered: 0,
               },
             ])
             .select();
@@ -42,7 +43,7 @@ const GetUser = () => {
       }
     };
     addPlayer();
-  }, []);
+  }, [isSignedIn, user]);
 
   return (
     <div>
