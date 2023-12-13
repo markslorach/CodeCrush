@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export const revalidate = 0
+export const dynamic = 'force-dynamic';
 
 export default function Codebox({ day }) {
 
