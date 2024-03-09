@@ -31,7 +31,7 @@ export const PlayerProvider = ({ children }) => {
       }
     };
     getPlayer();
-  }, [user]);
+  }, [user, player]);
 
   return (
     <PlayerContext.Provider value={player}>{children}</PlayerContext.Provider>

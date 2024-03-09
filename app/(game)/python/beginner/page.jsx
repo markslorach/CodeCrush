@@ -3,9 +3,10 @@ import { getAnswers, getQuestions } from "@/app/db/supabaseFetch";
 // Containers
 import QuestionContainer from "./QuestionContainer";
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 0;
 
 export default async function Beginner() {
+  
   // Get current day of the week
   const date = new Date();
   let day = date.getDay();
