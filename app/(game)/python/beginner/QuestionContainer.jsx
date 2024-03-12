@@ -17,7 +17,7 @@ import Score from "../../components/Score";
 export default function QuestionContainer({ questions, answers, day }) {
   const player = usePlayer();
 
-  const [score, setScore] = useState(player.score ?? 0);
+  const [score, setScore] = useState(player.score);
   const [submitted, setSubmitted] = useState(false);
   const [answered, setAnswered] = useState(false);
   const [answerValue, setAnswerValue] = useState(false);
@@ -36,9 +36,7 @@ export default function QuestionContainer({ questions, answers, day }) {
 
   // Set player score on load/change
   useEffect(() => {
-    if (player) {
-      setScore(player.score ?? 0);
-    }
+    setScore(player?.score);
   }, [player]);
 
   // Check if player has already answered question
