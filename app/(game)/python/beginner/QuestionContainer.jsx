@@ -12,7 +12,6 @@ import Answers from "../../components/Answers";
 import SubmitButton from "../../components/SubmitButton";
 import Score from "../../components/Score";
 
-// export const revalidate = 0;
 
 export default function QuestionContainer({ questions, answers, day }) {
   const player = usePlayer();

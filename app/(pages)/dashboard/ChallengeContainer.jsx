@@ -41,15 +41,15 @@ export default function ChallengeContainer() {
         </select>
       </div>
 
-    <div className="flex gap-5">
-      <ChellengeCard
-        difficulty={difficulty}
-        title={pythonCard.title}
-        description={pythonCard.description}
-        image={pythonCard.image}
-        link={pythonCard.link}
-      />
-      {/* <ChellengeCard disabled
+      <div className="flex gap-5">
+        <ChellengeCard
+          difficulty={difficulty}
+          title={pythonCard.title}
+          description={pythonCard.description}
+          image={pythonCard.image}
+          link={pythonCard.link}
+        />
+        {/* <ChellengeCard disabled
         difficulty={difficulty}
         title={jsCard.title}
         description={jsCard.description}

@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Icons
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
@@ -6,6 +8,8 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 
 export default function NavBar() {
+  const pathname = usePathname();
+
   return (
     <nav className="pb-8 pt-12 fixed z-30 bottom-0 left-0 w-full bg-gradient-to-t from-[#041d3e]">
       <div className="max-w-md mx-auto h-full flex justify-center items-center px-5 sm:px-10">
@@ -13,17 +17,26 @@ export default function NavBar() {
           <ul className="flex justify-between">
             <li>
               <Link href="/dashboard">
-                <SpaceDashboardIcon fontSize="medium" />
+                <SpaceDashboardIcon
+                  className={pathname === "/dashboard" ? "text-blue-400" : ""}
+                  fontSize="medium"
+                />
               </Link>
             </li>
             <li>
               <Link href="/profile">
-                <AccountBoxIcon fontSize="medium" />
+                <AccountBoxIcon
+                  className={pathname === "/profile" ? "text-blue-400" : ""}
+                  fontSize="medium"
+                />
               </Link>
             </li>
             <li>
               <Link href="/leaderboard">
-                <LeaderboardIcon fontSize="medium" />
+                <LeaderboardIcon
+                  className={pathname === "/leaderboard" ? "text-blue-400" : ""}
+                  fontSize="medium"
+                />
               </Link>
             </li>
           </ul>
